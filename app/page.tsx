@@ -29,7 +29,7 @@ const fadeIn = {
 export default function Home() {
   // Formspree Setup
   // REPLACE "YOUR_FORMSPREE_ID" below with the code you get from formspree.io (e.g., "xdoqplzk")
-  const [state, handleSubmit] = useForm("mvzgypbe"")
+  const [state, handleSubmit] = useForm("mvzgypbe")
 
   // Kept original state for controlled inputs visuals
   const [formData, setFormData] = useState({
