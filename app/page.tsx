@@ -482,7 +482,7 @@ export default function Home() {
               <div className="flex flex-col md:flex-row gap-6 justify-center items-center text-gray-600">
                 <div className="flex items-center gap-2">
                   <Mail className="w-5 h-5 text-primary" />
-                  <span>contact@alejandriosity.com</span>
+                  <span>alejandriosity@gmail.com</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <MessageSquare className="w-5 h-5 text-primary" />
