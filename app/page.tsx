@@ -1,8 +1,8 @@
 'use client'
 
 import { useState } from 'react'
-import { motion } from 'framer-motion'
-import { useForm, ValidationError } from '@formspree/react'
+import { motion } from 'framer-motion' // Added for animations
+import { useForm, ValidationError } from '@formspree/react' // Added for form handling
 import { 
   AlertCircle, 
   Bot, 
@@ -16,7 +16,7 @@ import {
   TrendingUp
 } from 'lucide-react' 
 
-
+// Animation variants configuration
 const fadeIn = {
   hidden: { opacity: 0, y: 30 },
   visible: { 
@@ -27,9 +27,11 @@ const fadeIn = {
 }
 
 export default function Home() {
-  
+  // Formspree Setup
+  // REPLACE "YOUR_FORMSPREE_ID" below with the code you get from formspree.io (e.g., "xdoqplzk")
   const [state, handleSubmit] = useForm("mvzgypbe")
 
+  // Kept original state for controlled inputs visuals
   const [formData, setFormData] = useState({
     name: '',
     email: '',
