@@ -1,6 +1,8 @@
 'use client'
 
 import { useState } from 'react'
+import { motion } from 'framer-motion' // Added for animations
+import { useForm, ValidationError } from '@formspree/react' // Added for form handling
 import { 
   AlertCircle, 
   Bot, 
@@ -12,34 +14,37 @@ import {
   Clock,
   Target,
   TrendingUp
-} from 'lucide-react'
+} from 'lucide-react' 
+
+// Animation variants configuration
+const fadeIn = {
+  hidden: { opacity: 0, y: 30 },
+  visible: { 
+    opacity: 1, 
+    y: 0,
+    transition: { duration: 0.6, ease: "easeOut" }
+  }
+}
 
 export default function Home() {
+  // Formspree Setup
+  // REPLACE "YOUR_FORMSPREE_ID" below with the code you get from formspree.io (e.g., "xdoqplzk")
+  const [state, handleSubmit] = useForm("mvzgypbe"")
+
+  // Kept original state for controlled inputs visuals
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     website: '',
     message: ''
   })
-  const [status, setStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle')
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    setStatus('sending')
-    
-    // Simulate form submission - replace with actual endpoint
-    setTimeout(() => {
-      setStatus('success')
-      setFormData({ name: '', email: '', website: '', message: '' })
-    }, 1000)
-  }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData(prev => ({
       ...prev,
       [e.target.name]: e.target.value
     }))
-  }
+  } 
 
   return (
     <div className="min-h-screen">
@@ -56,10 +61,16 @@ export default function Home() {
             Get Started
           </a>
         </div>
-      </nav>
+      </nav> 
 
       {/* Hero Section */}
-      <section className="pt-32 pb-20 px-6">
+      <motion.section 
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true }}
+        variants={fadeIn}
+        className="pt-32 pb-20 px-6"
+      >
         <div className="max-w-4xl mx-auto text-center">
           <div className="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-medium mb-6">
             <Zap className="w-4 h-4" />
@@ -72,7 +83,7 @@ export default function Home() {
           
           <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
             Contact forms • SSL warnings • Speed issues • AI automation
-          </p>
+          </p> 
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
             <a 
@@ -87,7 +98,7 @@ export default function Home() {
             >
               View Services
             </a>
-          </div>
+          </div> 
 
           {/* Trust Indicators */}
           <div className="grid grid-cols-3 gap-8 max-w-2xl mx-auto pt-8 border-t border-gray-200">
@@ -105,10 +116,16 @@ export default function Home() {
             </div>
           </div>
         </div>
-      </section>
+      </motion.section> 
 
       {/* Problem Statement */}
-      <section className="py-20 px-6 bg-gray-50">
+      <motion.section 
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: "-100px" }}
+        variants={fadeIn}
+        className="py-20 px-6 bg-gray-50"
+      >
         <div className="max-w-4xl mx-auto">
           <div className="bg-white rounded-2xl p-8 md:p-12 shadow-sm border border-gray-200">
             <div className="flex items-start gap-4 mb-6">
@@ -142,10 +159,17 @@ export default function Home() {
             </div>
           </div>
         </div>
-      </section>
+      </motion.section> 
 
       {/* Services Section */}
-      <section id="services" className="py-20 px-6">
+      <motion.section 
+        id="services" 
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: "-100px" }}
+        variants={fadeIn}
+        className="py-20 px-6"
+      >
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-gray-900 mb-4">
@@ -154,7 +178,7 @@ export default function Home() {
             <p className="text-xl text-gray-600 max-w-2xl mx-auto">
               Fast, practical solutions that get your website working properly and capturing leads 24/7
             </p>
-          </div>
+          </div> 
 
           <div className="grid md:grid-cols-3 gap-8">
             {/* Service 1 */}
@@ -196,7 +220,7 @@ export default function Home() {
                   Get Started
                 </a>
               </div>
-            </div>
+            </div> 
 
             {/* Service 2 */}
             <div className="bg-white rounded-2xl p-8 shadow-sm border-2 border-primary relative hover:shadow-lg transition-shadow">
@@ -240,7 +264,7 @@ export default function Home() {
                   Get Started
                 </a>
               </div>
-            </div>
+            </div> 
 
             {/* Service 3 */}
             <div className="bg-white rounded-2xl p-8 shadow-sm border border-gray-200 hover:shadow-lg transition-shadow">
@@ -284,10 +308,16 @@ export default function Home() {
             </div>
           </div>
         </div>
-      </section>
+      </motion.section> 
 
       {/* Process Section */}
-      <section className="py-20 px-6 bg-gray-50">
+      <motion.section 
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: "-100px" }}
+        variants={fadeIn}
+        className="py-20 px-6 bg-gray-50"
+      >
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-gray-900 mb-4">
@@ -296,7 +326,7 @@ export default function Home() {
             <p className="text-xl text-gray-600">
               Simple, fast, and transparent process
             </p>
-          </div>
+          </div> 
 
           <div className="grid md:grid-cols-3 gap-8">
             <div className="text-center">
@@ -307,7 +337,7 @@ export default function Home() {
               <p className="text-gray-600">
                 I check your website and identify exactly what's broken and how much it's costing you
               </p>
-            </div>
+            </div> 
 
             <div className="text-center">
               <div className="w-16 h-16 bg-primary rounded-full flex items-center justify-center text-white text-2xl font-bold mx-auto mb-4">
@@ -317,7 +347,7 @@ export default function Home() {
               <p className="text-gray-600">
                 Most issues are resolved the same day. I explain what I'm doing in plain English
               </p>
-            </div>
+            </div> 
 
             <div className="text-center">
               <div className="w-16 h-16 bg-primary rounded-full flex items-center justify-center text-white text-2xl font-bold mx-auto mb-4">
@@ -330,10 +360,16 @@ export default function Home() {
             </div>
           </div>
         </div>
-      </section>
+      </motion.section> 
 
       {/* Why Choose Me */}
-      <section className="py-20 px-6">
+      <motion.section 
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: "-100px" }}
+        variants={fadeIn}
+        className="py-20 px-6"
+      >
         <div className="max-w-4xl mx-auto">
           <h2 className="text-4xl font-bold text-gray-900 mb-12 text-center">
             Why Work With Me
@@ -348,7 +384,7 @@ export default function Home() {
                   Most fixes are completed the same day. I don't make you wait weeks for results.
                 </p>
               </div>
-            </div>
+            </div> 
 
             <div className="flex gap-4">
               <Target className="w-8 h-8 text-primary flex-shrink-0" />
@@ -358,7 +394,7 @@ export default function Home() {
                   I explain technical issues in plain language and show you exactly what was fixed.
                 </p>
               </div>
-            </div>
+            </div> 
 
             <div className="flex gap-4">
               <Zap className="w-8 h-8 text-primary flex-shrink-0" />
@@ -368,7 +404,7 @@ export default function Home() {
                   I leverage cutting-edge AI tools to work faster and deliver better results than traditional developers.
                 </p>
               </div>
-            </div>
+            </div> 
 
             <div className="flex gap-4">
               <Shield className="w-8 h-8 text-primary flex-shrink-0" />
@@ -381,10 +417,17 @@ export default function Home() {
             </div>
           </div>
         </div>
-      </section>
+      </motion.section> 
 
       {/* Contact Section */}
-      <section id="contact" className="py-20 px-6 bg-secondary text-white">
+      <motion.section 
+        id="contact" 
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: "-100px" }}
+        variants={fadeIn}
+        className="py-20 px-6 bg-secondary text-white"
+      >
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-12">
             <h2 className="text-4xl font-bold mb-4">
@@ -393,7 +436,7 @@ export default function Home() {
             <p className="text-xl text-gray-300">
               I'll check your website and show you exactly what's broken and how to fix it
             </p>
-          </div>
+          </div> 
 
           <div className="bg-white rounded-2xl p-8 md:p-12">
             <form onSubmit={handleSubmit} className="space-y-6">
@@ -412,7 +455,8 @@ export default function Home() {
                     className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent text-gray-900"
                     placeholder="John Smith"
                   />
-                </div>
+                  <ValidationError prefix="Name" field="name" errors={state.errors} />
+                </div> 
 
                 <div>
                   <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
@@ -428,8 +472,9 @@ export default function Home() {
                     className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent text-gray-900"
                     placeholder="john@company.com"
                   />
+                  <ValidationError prefix="Email" field="email" errors={state.errors} />
                 </div>
-              </div>
+              </div> 
 
               <div>
                 <label htmlFor="website" className="block text-sm font-medium text-gray-700 mb-2">
@@ -445,7 +490,8 @@ export default function Home() {
                   className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent text-gray-900"
                   placeholder="https://yourwebsite.com"
                 />
-              </div>
+                <ValidationError prefix="Website" field="website" errors={state.errors} />
+              </div> 
 
               <div>
                 <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">
@@ -460,23 +506,24 @@ export default function Home() {
                   className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent text-gray-900"
                   placeholder="Tell me about any problems you're noticing..."
                 />
-              </div>
+                <ValidationError prefix="Message" field="message" errors={state.errors} />
+              </div> 
 
               <button
                 type="submit"
-                disabled={status === 'sending'}
+                disabled={state.submitting}
                 className="w-full bg-primary text-white px-8 py-4 rounded-lg hover:bg-primary/90 transition-colors text-lg font-medium disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                {status === 'sending' ? 'Sending...' : 'Get Free Audit'}
-              </button>
+                {state.submitting ? 'Sending...' : 'Get Free Audit'}
+              </button> 
 
-              {status === 'success' && (
+              {state.succeeded && (
                 <div className="flex items-center gap-2 text-green-600 bg-green-50 p-4 rounded-lg">
                   <CheckCircle className="w-5 h-5" />
                   <span>Thanks! I'll review your website and get back to you within 24 hours.</span>
                 </div>
               )}
-            </form>
+            </form> 
 
             <div className="mt-8 pt-8 border-t border-gray-200">
               <div className="flex flex-col md:flex-row gap-6 justify-center items-center text-gray-600">
@@ -492,7 +539,7 @@ export default function Home() {
             </div>
           </div>
         </div>
-      </section>
+      </motion.section> 
 
       {/* Footer */}
       <footer className="bg-gray-900 text-gray-400 py-12 px-6">
@@ -503,7 +550,7 @@ export default function Home() {
               <p className="text-sm">
                 AI-powered web solutions that fix broken websites and capture more leads for your business.
               </p>
-            </div>
+            </div> 
 
             <div>
               <h4 className="text-white font-semibold mb-4">Services</h4>
@@ -512,7 +559,7 @@ export default function Home() {
                 <li><a href="#services" className="hover:text-white transition-colors">AI Chatbot Setup</a></li>
                 <li><a href="#services" className="hover:text-white transition-colors">Website Monitoring</a></li>
               </ul>
-            </div>
+            </div> 
 
             <div>
               <h4 className="text-white font-semibold mb-4">Get Started</h4>
@@ -521,7 +568,7 @@ export default function Home() {
                 <li><a href="#contact" className="hover:text-white transition-colors">Contact Me</a></li>
               </ul>
             </div>
-          </div>
+          </div> 
 
           <div className="border-t border-gray-800 pt-8 text-center text-sm">
             <p>&copy; {new Date().getFullYear()} Alejandro Fernandez. All rights reserved.</p>
@@ -531,3 +578,4 @@ export default function Home() {
     </div>
   )
 }
+
