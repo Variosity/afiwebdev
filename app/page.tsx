@@ -79,7 +79,7 @@ export default function Home() {
           </div>
           
           <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6 text-balance">
-            Stop Losing Leads.<br/>Optimize Your Online Presence Today.
+            I fix broken websites that are losing businesses leads
           </h1>
           
           <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
