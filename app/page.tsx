@@ -1,47 +1,44 @@
 'use client'
 
 import { useState } from 'react'
-import {
-  AlertCircle,
-  Bot,
-  CheckCircle,
-  Mail,
-  MessageSquare,
-  Shield,
+import { 
+  AlertCircle, 
+  Bot, 
+  CheckCircle, 
+  Mail, 
+  MessageSquare, 
+  Shield, 
   Zap,
   Clock,
   Target,
   TrendingUp
 } from 'lucide-react'
 
-const FORMSPREE_ENDPOINT = 'https://formspree.io/f/mvzgypbe'
-
 export default function Home() {
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    website: '',
+    message: ''
+  })
   const [status, setStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle')
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setStatus('sending')
+    
+    // Simulate form submission - replace with actual endpoint
+    setTimeout(() => {
+      setStatus('success')
+      setFormData({ name: '', email: '', website: '', message: '' })
+    }, 1000)
+  }
 
-    const form = e.currentTarget
-    const data = new FormData(form)
-
-    try {
-      const res = await fetch(FORMSPREE_ENDPOINT, {
-        method: 'POST',
-        body: data,
-        headers: { Accept: 'application/json' }
-      })
-
-      if (res.ok) {
-        form.reset()
-        setStatus('success')
-      } else {
-        setStatus('error')
-      }
-    } catch {
-      setStatus('error')
-    }
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setFormData(prev => ({
+      ...prev,
+      [e.target.name]: e.target.value
+    }))
   }
 
   return (
